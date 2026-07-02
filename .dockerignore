@@ -1,0 +1,27 @@
+# Virtual environments
+.venv/
+venv/
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Secrets — never bake these into the image
+.env
+
+# Rebuilt inside the image by `python ingest.py`
+vectorstore/
+.hf_cache/
+
+# Version control / editors
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Local extras not needed at runtime
+uploads/
+.streamlit/
+tests/
+*.md

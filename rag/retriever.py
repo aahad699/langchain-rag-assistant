@@ -1,5 +1,7 @@
 from langchain_core.vectorstores import VectorStoreRetriever
 
+from config import Config
+
 
 class Retriever:
     """
@@ -9,7 +11,7 @@ class Retriever:
     def __init__(self, vectorstore):
         self.vectorstore = vectorstore
 
-    def get_retriever(self, k: int = 3) -> VectorStoreRetriever:
+    def get_retriever(self, k: int = Config.TOP_K) -> VectorStoreRetriever:
         return self.vectorstore.as_retriever(
             search_kwargs={"k": k}
         )

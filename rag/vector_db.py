@@ -1,7 +1,9 @@
 from pathlib import Path
 
 from langchain_community.vectorstores import FAISS
+
 from config import Config
+from utils.exceptions import VectorStoreNotFoundError
 
 
 class VectorDatabase:
@@ -30,7 +32,16 @@ class VectorDatabase:
     def load(self, embeddings):
         """
         Load an existing FAISS index.
+
+        Raises:
+            VectorStoreNotFoundError: if the index has not been built yet.
         """
+        if not (self.db_path / "index.faiss").exists():
+            raise VectorStoreNotFoundError(
+                f"No FAISS index found at '{self.db_path}'. "
+                f"Build it first by running: python ingest.py"
+            )
+
         return FAISS.load_local(
             str(self.db_path),
             embeddings,

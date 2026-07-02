@@ -1,5 +1,7 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
+from config import Config
+
 
 class DocumentSplitter:
     """
@@ -8,8 +10,8 @@ class DocumentSplitter:
 
     def __init__(
         self,
-        chunk_size: int = 1000,
-        chunk_overlap: int = 200,
+        chunk_size: int = Config.CHUNK_SIZE,
+        chunk_overlap: int = Config.CHUNK_OVERLAP,
     ):
         self.splitter = RecursiveCharacterTextSplitter(
             chunk_size=chunk_size,
